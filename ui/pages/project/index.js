@@ -270,10 +270,11 @@ const Project = joystick.component({
       }).then(() => {
         instance.set_state({ editing_project_name: false }, () => {
           instance.data.refetch();
+          dropdown_button();
         });
       }).catch(({ errors }) => {
         toasts.danger({
-          title: 'Update Project Error',
+          title: instance.i18n('project.toasts.update_project_error'),
           message: errors?.[0]?.message,
         });
       });
@@ -288,7 +289,7 @@ const Project = joystick.component({
           location.pathname = '/projects';
         }).catch(({ errors }) => {
           toasts.danger({
-            title: 'Delete Project Error',
+            title: instance.i18n('project.toasts.delete_project_error'),
             message: errors?.[0]?.message,
           });
         });
@@ -347,7 +348,7 @@ const Project = joystick.component({
           }, 100);
         }).catch(({ errors }) => {
           toasts.danger({
-            title: 'Create Post Error',
+            title: instance.i18n('project.toasts.create_post_error'),
             message: errors?.[0]?.message,
           });
         });;
@@ -394,7 +395,7 @@ const Project = joystick.component({
           });
         }).catch(({ errors }) => {
           toasts.danger({
-            title: 'Update Task Error',
+            title: instance.i18n('project.toasts.update_task_error'),
             message: errors?.[0]?.message,
           });
         });
@@ -441,14 +442,14 @@ const Project = joystick.component({
           });
           
           toasts.success({
-            title: 'Delete Task',
-            message: 'Task successfully deleted!',
+            title: instance.i18n('project.toasts.delete_task'),
+            message: instance.i18n('project.toasts.delete_task_success'),
           });
         }).catch(({ errors }) => {
-          toasts.danger({
-            title: 'Delete Task Error',
-            message: errors?.[0]?.message,
-          });
+            toasts.danger({
+              title: instance.i18n('project.toasts.search_tasks_error'),
+              message: errors?.[0]?.message,
+            });
         });
       }
     },
@@ -476,8 +477,8 @@ const Project = joystick.component({
               <div class="mod-dropdown">
                 <section class="mod-dropdown-section">
                   <ul>
-                    <li class="edit-project-name"><a href="#"><i class="mod-icon-pencil"></i> Edit Name</a></li>
-                    <li class="delete-project"><a href="#"><i class="mod-icon-trash"></i> Delete Project</a></li>
+                    <li class="edit-project-name"><a href="#"><i class="mod-icon-pencil"></i> ${i18n('project.menu.edit_name')}</a></li>
+                    <li class="delete-project"><a href="#"><i class="mod-icon-trash"></i> ${i18n('project.menu.delete_project')}</a></li>
                   </ul>
                 </section>      
               </div>
@@ -490,8 +491,8 @@ const Project = joystick.component({
             </div>          
             <div class="mod-tabs-well">
               <ul>
-                <li data-list="todo" ${state?.list === 'todo' ? 'class="is-active"' : ''}><i class="mod-icon-x"></i> Todo <span class="mod-tabs-well-badge">${data?.project?.totals.todo}</span></li>
-                <li data-list="done" ${state?.list === 'done' ? 'class="is-active"' : ''}><i class="mod-icon-check"></i> Done <span class="mod-tabs-well-badge">${data?.project?.totals.done}</span></li>
+                <li data-list="todo" ${state?.list === 'todo' ? 'class="is-active"' : ''}><i class="mod-icon-x"></i> ${i18n('project.tabs.todo')} <span class="mod-tabs-well-badge">${data?.project?.totals.todo}</span></li>
+                <li data-list="done" ${state?.list === 'done' ? 'class="is-active"' : ''}><i class="mod-icon-check"></i> ${i18n('project.tabs.done')} <span class="mod-tabs-well-badge">${data?.project?.totals.done}</span></li>
               </ul>
             </div>          
           </nav>

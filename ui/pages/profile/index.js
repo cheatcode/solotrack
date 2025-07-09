@@ -87,14 +87,14 @@ const Profile = joystick.component({
         },
         messages: {
           first_name: {
-            required: 'First name is required.',
+            required: instance.i18n('profile.validation.first_name_required'),
           },
           last_name: {
-            required: 'Last name is required.',
+            required: instance.i18n('profile.validation.last_name_required'),
           },
           email_address: {
-            required: 'Email address is required.',
-            email: 'Must be a valid email address.',
+            required: instance.i18n('profile.validation.email_address_required'),
+            email: instance.i18n('profile.validation.email_address_invalid'),
           },
         },
         on_render_error: (element = {}, message = '') => {
@@ -114,8 +114,8 @@ const Profile = joystick.component({
         });
       }).then(() => {
         toasts.success({
-          title: 'Update Profile',
-          message: 'Profile successfully updated!',
+          title: instance.i18n('profile.toasts.update_profile_title'),
+          message: instance.i18n('profile.toasts.update_profile_success'),
         });
         
         setTimeout(() => {
@@ -124,7 +124,7 @@ const Profile = joystick.component({
         }, 3000);
       }).catch(({ errors }) => {
         toasts.danger({
-          title: 'Update Profile Error',
+          title: instance.i18n('profile.toasts.update_profile_error'),
           message: errors?.[0]?.message,
         });
       });
@@ -146,12 +146,12 @@ const Profile = joystick.component({
         },
         messages: {
           new_password: {
-            required: 'New password is required.',
-            min_length: 'Must use at least 8 characters.',
+            required: instance.i18n('profile.validation.new_password_required'),
+            min_length: instance.i18n('profile.validation.new_password_min_length'),
           },
           repeat_new_password: {
-            required: 'Must repeat new password.',
-            matches: 'Passwords must match.',
+            required: instance.i18n('profile.validation.repeat_new_password_required'),
+            matches: instance.i18n('profile.validation.passwords_must_match'),
           },
         },
         on_render_error: (element = {}, message = '') => {
@@ -169,23 +169,23 @@ const Profile = joystick.component({
         });
       }).then(() => {
         toasts.success({
-          title: 'Change Password',
-          message: 'Password successfully changed!',
+          title: instance.i18n('profile.toasts.change_password_title'),
+          message: instance.i18n('profile.toasts.change_password_success'),
         });
       }).catch(({ errors }) => {
         toasts.danger({
-          title: 'Change Password Error',
+          title: instance.i18n('profile.toasts.change_password_error'),
           message: errors?.[0]?.message,
         });
       });
     },
   },
-  render: ({ data }) => {
+  render: ({ data, i18n }) => {
     return `
       <div class="profile">
         <section class="profile-section">
           <header>
-            <h2>Account</h2>
+            <h2>${i18n('profile.section.account')}</h2>
           </header>
           <div class="profile-section-body">
             <form class="account">
@@ -193,45 +193,45 @@ const Profile = joystick.component({
                 <div class="mod-grid">
                   <div class="mod-grid-row">
                     <div class="mod-grid-column-6">
-                      <label class="mod-input-label">First Name</label>
-                      <input type="text" class="mod-input" name="first_name" placeholder="First Name" value="${data?.profile?.name?.first || ''}" />
+                      <label class="mod-input-label">${i18n('profile.form.first_name_label')}</label>
+                      <input type="text" class="mod-input" name="first_name" placeholder="${i18n('profile.form.first_name_placeholder')}" value="${data?.profile?.name?.first || ''}" />
                     </div>
                     <div class="mod-grid-column-6">
-                      <label class="mod-input-label">Last Name</label>
-                      <input type="text" class="mod-input" name="last_name" placeholder="Last Name" value="${data?.profile?.name?.last || ''}" />
+                      <label class="mod-input-label">${i18n('profile.form.last_name_label')}</label>
+                      <input type="text" class="mod-input" name="last_name" placeholder="${i18n('profile.form.last_name_placeholder')}" value="${data?.profile?.name?.last || ''}" />
                     </div>
                   </div>
                 </div>
               </div>            
               <div class="mod-form-input">
-                <label class="mod-input-label">Email Address</label>
-                <input type="email" class="mod-input" name="email_address" placeholder="Email Address" value="${data?.profile?.emailAddress || ''}" />
+                <label class="mod-input-label">${i18n('profile.form.email_address_label')}</label>
+                <input type="email" class="mod-input" name="email_address" placeholder="${i18n('profile.form.email_address_placeholder')}" value="${data?.profile?.emailAddress || ''}" />
               </div>
-              <button class="mod-button mod-button-brand mod-margin-top-10">Save Profile</button>
+              <button class="mod-button mod-button-brand mod-margin-top-10">${i18n('profile.form.save_profile_button')}</button>
             </form>
           </div>
         </section>
         <section class="profile-section">
           <header>
-            <h2>Password</h2>
+            <h2>${i18n('profile.section.password')}</h2>
           </header>
           <div class="profile-section-body">    
             <form class="password">  
               <div class="mod-form-input">
-                <label class="mod-input-label">New Password</label>
+                <label class="mod-input-label">${i18n('profile.form.new_password_label')}</label>
                 <div class="mod-password-input-show-hide">
-                  <input type="password" class="mod-input" name="new_password" placeholder="New Password" />
+                  <input type="password" class="mod-input" name="new_password" placeholder="${i18n('profile.form.new_password_placeholder')}" />
                   <i class="mod-icon-eye"></i>
                 </div>
               </div>
               <div class="mod-form-input">
-                <label class="mod-input-label">Repeat New Password</label>
+                <label class="mod-input-label">${i18n('profile.form.repeat_new_password_label')}</label>
                 <div class="mod-password-input-show-hide">
-                  <input type="password" class="mod-input" name="repeat_new_password" placeholder="Repeat New Password" />
+                  <input type="password" class="mod-input" name="repeat_new_password" placeholder="${i18n('profile.form.repeat_new_password_placeholder')}" />
                   <i class="mod-icon-eye"></i>
                 </div>
               </div>
-              <button class="mod-button mod-button-brand mod-margin-top-10">Change Password</button>
+              <button class="mod-button mod-button-brand mod-margin-top-10">${i18n('profile.form.change_password_button')}</button>
             </form>
           </div>
         </section>
