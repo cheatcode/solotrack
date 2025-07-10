@@ -2,6 +2,7 @@ import joystick from "@joystick.js/node-canary";
 import api from "./api/index.js";
 import tasks_cache from "./caches/tasks.js";
 import projects_cache from "./caches/projects.js";
+import get_seo_metadata from "./lib/get_seo_metadata.js";
 
 joystick.app({
   api,
@@ -21,6 +22,10 @@ joystick.app({
       req.context.ifLoggedIn('/projects', () => {
         res.render("ui/pages/login/index.js", {
           layout: "ui/layouts/account/index.js",
+          head: get_seo_metadata({
+            page_title: 'Login',
+            page_description: 'Login to your Solotrack account.',
+          }),
         });
       });
     },
@@ -28,6 +33,10 @@ joystick.app({
       req.context.ifLoggedIn('/projects', () => {
         res.render("ui/pages/signup/index.js", {
           layout: "ui/layouts/account/index.js",
+          head: get_seo_metadata({
+            page_title: 'Sign Up',
+            page_description: 'Sign up for a Solotrack account.',
+          }),
         });
       });
     },
@@ -35,6 +44,10 @@ joystick.app({
       req.context.ifLoggedIn('/projects', () => {
         res.render("ui/pages/recover_password/index.js", {
           layout: "ui/layouts/account/index.js",
+          head: get_seo_metadata({
+            page_title: 'Recover Password',
+            page_description: 'Request a password reset for your Solotrack account.',
+          }),          
         });
       });
     },
@@ -42,6 +55,10 @@ joystick.app({
       req.context.ifLoggedIn('/projects', () => {
         res.render("ui/pages/reset_password/index.js", {
           layout: "ui/layouts/account/index.js",
+          head: get_seo_metadata({
+            page_title: 'Reset Password',
+            page_description: 'Reset the password for your Solotrack account.',
+          }), 
         });
       });
     },
@@ -49,6 +66,10 @@ joystick.app({
       req.context.ifNotLoggedIn('/login', () => {
         res.render("ui/pages/profile/index.js", {
           layout: "ui/layouts/app/index.js",
+          head: get_seo_metadata({
+            page_title: 'Profile',
+            page_description: 'Manage your Solotrack profile.',
+          }),
         });
       });
     },
@@ -56,6 +77,10 @@ joystick.app({
       req.context.ifNotLoggedIn('/login', () => {
         res.render("ui/pages/projects/index.js", {
           layout: "ui/layouts/app/index.js",
+          head: get_seo_metadata({
+            page_title: 'Projects',
+            page_description: 'Your projects on Solotrack.',
+          }),
         });
       });
     },
@@ -63,6 +88,10 @@ joystick.app({
       req.context.ifNotLoggedIn('/login', () => {
         res.render("ui/pages/project/index.js", {
           layout: "ui/layouts/app/index.js",
+          head: get_seo_metadata({
+            page_title: 'Project',
+            page_description: 'A project on Solotrack.',
+          }),
         });
       });
     },
@@ -70,6 +99,10 @@ joystick.app({
       req.context.ifNotLoggedIn('/login', () => {
         res.render("ui/pages/edit_task/index.js", {
           layout: "ui/layouts/app/index.js",
+          head: get_seo_metadata({
+            page_title: 'Task',
+            page_description: 'A project task on Solotrack.',
+          }),
         });
       });
     },
