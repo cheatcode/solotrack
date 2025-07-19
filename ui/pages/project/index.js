@@ -115,37 +115,36 @@ const Project = joystick.component({
             border-radius: 5px;
           }
 
-          .project .tasks > ul > li label {
+          .project .tasks > ul > li .task-title-checkbox {
             display: flex;
             align-items: center;
             width: 100%;
             padding: 20px;
             font-size: 15px;
-            cursor: pointer;
           }
 
-          .project .tasks > ul > li label .task-title {
+          .project .tasks > ul > li .task-title-checkbox .task-title {
             display: flex;
             flex-direction: column;
           }
 
-          .project .tasks > ul > li label .task-title > ul {
+          .project .tasks > ul > li .task-title-checkbox .task-title > ul {
             display: flex;
             gap: 7px;
             margin-left: 0;
           }
 
-          .project .tasks > ul > li label .task-title > ul > li > a {
+          .project .tasks > ul > li .task-title-checkbox .task-title > ul > li > a {
             display: inline-block;
             text-decoration: none;
             color: var(--mod-neutral-8);
           }
   
-          .project .tasks > ul > li label .task-title > ul > li > a:hover {
+          .project .tasks > ul > li .task-title-checkbox .task-title > ul > li > a:hover {
             color: var(--mod-brand);
           }
 
-          .project .tasks > ul > li label input {
+          .project .tasks > ul > li .task-title-checkbox input {
             margin-right: 15px;
             width: 20px;
             min-width: 20px;
@@ -153,17 +152,17 @@ const Project = joystick.component({
             min-height: 20px;
           }
 
-          .project .tasks > ul > li label .task-tags {
+          .project .tasks > ul > li .task-title-checkbox .task-tags {
             display: inline-flex;
             gap: 5px;
             margin: 10px 0 0 0;
           }
 
-          .project .tasks > ul > li label .task-tags + .task-completed-at {
+          .project .tasks > ul > li .task-title-checkbox .task-tags + .task-completed-at {
             margin: 10px 0 0 0;
           }
 
-          .project .tasks > ul > li label .task-tags .mod-badge {
+          .project .tasks > ul > li .task-title-checkbox .task-tags .mod-badge {
             align-self: center;
           }
 
@@ -181,7 +180,7 @@ const Project = joystick.component({
             margin-bottom: 10px;
           }
 
-          .project .tasks > ul > li.is-complete label {
+          .project .tasks > ul > li.is-complete .task-title-checkbox {
             text-decoration: line-through;
             opacity: 0.5;
           }
@@ -219,24 +218,24 @@ const Project = joystick.component({
             width: calc(100% - 80px);
           }
 
-          .project .tasks > ul > li label .task-title {
+          .project .tasks > ul > li .task-title-checkbox .task-title {
             flex-direction: row;
             width: 100%;
           }          
 
-          .project .tasks > ul > li label .task-title > ul {
+          .project .tasks > ul > li .task-title-checkbox .task-title > ul {
             margin-left: 10px;
           }          
 
-          .project .tasks > ul > li label .task-tags {
+          .project .tasks > ul > li .task-title-checkbox .task-tags {
             margin: 0 0 0 auto;
           }
 
-          .project .tasks > ul > li label .task-tags + .task-completed-at {
+          .project .tasks > ul > li .task-title-checkbox .task-tags + .task-completed-at {
             margin: 0 0 0 10px;
           }
 
-          .project .tasks > ul > li label:not(:has(.task-tags)) .task-completed-at {
+          .project .tasks > ul > li .task-title-checkbox:not(:has(.task-tags)) .task-completed-at {
             margin: 0 0 0 auto;
           }
         `,
@@ -502,10 +501,10 @@ const Project = joystick.component({
             <ul>
               ${each(tasks_to_render, (task = {}) => `
                 <li data-task-id="${task?._id}" ${task?.complete ? 'class="is-complete"' : ''}>
-                  <label>
+                  <div class="task-title-checkbox">
                     <input type="checkbox" name="complete" class="mod-input" ${task?.complete ? 'checked="true"' : ''} />
                     <span class="task-title">
-                      ${task?.task}
+                      <a href="/projects/${task?.project_id}/tasks/${task?._id}">${task?.task}</a>
                       ${when(task?.notes || task?.attachments?.length > 0, () => `
                         <ul>
                           ${when(task?.notes, () => `<li><a href="/projects/${task?.project_id}/tasks/${task?._id}"><i class="has-notes mod-icon-notebook-text"></i></a></li>`)}
@@ -521,7 +520,7 @@ const Project = joystick.component({
                         <span class="task-completed-at">${timeago(task?.completed_at)}</span>
                       `)}
                     </span>
-                  </label>
+                  </div>
                   <div class="mod-dropdown-button">
                     <button class="mod-button"><i class="mod-icon-ellipsis"></i></button>
                     <div class="mod-dropdown">
