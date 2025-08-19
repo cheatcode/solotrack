@@ -3,3 +3,6 @@ node_modules
 .joystick/build
 uploads
 settings.production.json
+
+private/ca.crt
+private/mdb1.apps.cheatcode.co_client.pem
