@@ -86,6 +86,7 @@ const EditTask = joystick.component({
           .edit-task > header > .edit-task {
             display: flex;
             margin: 30px 0 0 0;
+            padding-bottom: 0px;
           }
 
           .edit-task > header > .edit-task [type="checkbox"] {
@@ -267,7 +268,7 @@ const EditTask = joystick.component({
       }
     },
   },
-  render: ({ component, url, data, state, when, each }) => {
+  render: ({ component, url, data, state, when, raw, each }) => {
     return `
       <div class="edit-task ${data?.task?.complete ? 'is-complete' : ''}">
         <header>
@@ -303,7 +304,7 @@ const EditTask = joystick.component({
           `)}
           ${when(!state?.editing_notes && data?.task?.notes, () => `
             <div class="notes edit-notes">
-              ${data?.task?.notes_html || ''}
+              ${raw(data?.task?.notes_html) || ''}
             </div>
           `)}
         </section>

@@ -12,9 +12,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@joystick.js/node-canary": "^0.0.0-canary.1935",
+    "@joystick.js/node-canary": "^0.0.0-canary.2109",
     "@joystick.js/test-canary": "^0.0.0-canary.1935",
-    "@joystick.js/ui-canary": "^0.0.0-canary.1935",
+    "@joystick.js/ui-canary": "^0.0.0-canary.2109",
     "@shikijs/markdown-it": "^3.7.0",
     "dayjs": "^1.11.13",
     "fuzzysort": "^2.0.4",
