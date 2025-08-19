@@ -1,4 +1,4 @@
-import joystick, { set, get } from '@joystick.js/ui-canary';
+import joystick, { set, get } from '@joystick.js/ui';
 import toasts from '../../../lib/toasts.js';
 import { timeago } from '../../../lib/dates.js';
 import generate_pagination from '../../../lib/generate_pagination.js';

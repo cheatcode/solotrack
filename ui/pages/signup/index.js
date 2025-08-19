@@ -1,6 +1,7 @@
-import joystick, { accounts } from '@joystick.js/ui-canary';
+import joystick, { accounts } from '@joystick.js/ui';
 import { password_input } from '../../../lib/mod.esm.min.js';
 import toasts from '../../../lib/toasts.js';
+import JoystickTeaser from '../../components/joystick_teaser/index.js';
 
 const Signup = joystick.component({
   lifecycle: {
@@ -105,7 +106,7 @@ const Signup = joystick.component({
       });
     },
   },
-  render: ({ props, state, data, each, when, methods, i18n }) => {
+  render: ({ component, props, i18n }) => {
     return `
       <div class="signup">
         <header>
@@ -142,6 +143,7 @@ const Signup = joystick.component({
           </div>
           <button type="submit" class="mod-button mod-button-brand mod-button-block mod-margin-top-20">${i18n('signup.create_account_button')}</button>
         </form>
+        ${component(JoystickTeaser, props)}
       </div>
     `;
   },

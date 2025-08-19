@@ -1,4 +1,4 @@
-import joystick from "@joystick.js/node-canary";
+import joystick from "@joystick.js/node";
 import api from "./api/index.js";
 import tasks_cache from "./caches/tasks.js";
 import projects_cache from "./caches/projects.js";

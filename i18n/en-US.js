@@ -122,6 +122,11 @@ const en_US = {
         label: 'New Project',
       },
     },
+    list: {
+      none: 'No current tasks',
+      task: 'task',
+      tasks: 'tasks',
+    },
     blank_state: {
       no_projects: {
         title: 'You Don\'t Have Any Projects',

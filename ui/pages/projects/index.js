@@ -1,4 +1,4 @@
-import joystick, { get } from '@joystick.js/ui-canary';
+import joystick, { get } from '@joystick.js/ui';
 import NewProjectModal from '../../components/new_project_modal/index.js';
 import { modal } from '../../../lib/mod.esm.min.js';
 import debounce from '../../../lib/debounce.js';
@@ -133,7 +133,9 @@ const Projects = joystick.component({
               <li>
                 <a href="/projects/${project?._id}"></a>
                 <h2>${project?.name}</h2>
-                <p>No current tasks</p>
+                ${when(project?.tasks === 0, `<p>${i18n('projects.list.none')}</p>`)}
+                ${when(project?.tasks === 1, `<p>1 ${i18n('projects.list.task')}</p>`)}
+                ${when(project?.tasks > 1, `<p>${project?.tasks} ${i18n('projects.list.tasks')}</p>`)}
               </li>
             `)}
           </ul>

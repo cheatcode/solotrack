@@ -1,4 +1,4 @@
-import { accounts } from '@joystick.js/node-canary';
+import { accounts } from '@joystick.js/node';
 import fs from 'fs/promises';
 import parse_markdown from "../lib/node/parse_markdown.js";
 import parse_hashtags from "../lib/parse_hashtags.js";
@@ -62,10 +62,53 @@ const api = {
     },
     projects: {
       authorized: user_exists,
-      get: (_input, context = {}) => {
-        return process.databases.mongodb.collection('projects').find({
-          user_id: context?.user?._id,
-        }).toArray();
+      get: async (_input, context = {}) => {
+        const projects = await process.databases.mongodb.collection('projects').aggregate([
+          {
+            $match: {
+              user_id: context?.user?._id,
+            }
+          },
+          {
+            $lookup: {
+              from: 'tasks',
+              let: { project_id: '$_id' },
+              pipeline: [
+                {
+                  $match: {
+                    $expr: {
+                      $and: [
+                        { $eq: ['$project_id', '$$project_id'] },
+                        { $eq: ['$complete', false] }
+                      ]
+                    }
+                  }
+                },
+                {
+                  $count: 'count'
+                }
+              ],
+              as: 'task_count'
+            }
+          },
+          {
+            $addFields: {
+              tasks: {
+                $ifNull: [{ $arrayElemAt: ['$task_count.count', 0] }, 0]
+              }
+            }
+          },
+          {
+            $project: {
+              task_count: 0
+            }
+          },
+          {
+            $sort: { name: 1 }
+          }
+        ]).toArray();
+
+        return projects;
       },
     },
     search_projects: {

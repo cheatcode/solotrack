@@ -1,4 +1,4 @@
-import joystick, { set, upload } from '@joystick.js/ui-canary';
+import joystick, { set, upload } from '@joystick.js/ui';
 import { timeago } from '../../../lib/dates.js';
 import toasts from '../../../lib/toasts.js';
 import ConfirmDeleteAttachment from '../../components/confirm_delete_attachment/index.js';

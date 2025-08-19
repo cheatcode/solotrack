@@ -1,4 +1,4 @@
-import joystick from "@joystick.js/ui-canary";
+import joystick from "@joystick.js/ui";
 import AppNavigation from "../../components/app_navigation/index.js";
 
 const App = joystick.component({

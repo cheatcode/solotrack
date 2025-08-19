@@ -1,4 +1,4 @@
-import joystick, { accounts } from '@joystick.js/ui-canary';
+import joystick, { accounts } from '@joystick.js/ui';
 import { password_input } from '../../../lib/mod.esm.min.js';
 import toasts from '../../../lib/toasts.js';
 

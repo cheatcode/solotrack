@@ -1,4 +1,4 @@
-import joystick, { accounts } from '@joystick.js/ui-canary';
+import joystick, { accounts } from '@joystick.js/ui';
 import Cookies from 'js-cookie';
 import { navigation_bar } from '../../../lib/mod.esm.min.js';
 
@@ -40,7 +40,7 @@ const AppNavigation = joystick.component({
     return `
       <nav class="mod-navigation-bar-app-style-1">
         <div class="mod-navigation-bar-container">
-          <a style="height: 21px;" class="mod-navigation-bar-logo" href="#">
+          <a style="height: 20px;" class="mod-navigation-bar-logo" href="#">
             <img src="/logo_${props?.theme}.svg" alt="${i18n('app_navigation.logo.alt')}" />
           </a>
           ${when(user, () => `

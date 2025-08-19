@@ -1,4 +1,4 @@
-import { cache } from '@joystick.js/node-canary';
+import { cache } from '@joystick.js/node';
 
 const tasks = async (user_id = '') => {
   const tasks_cache = cache(`tasks_${user_id}`);

@@ -1,4 +1,4 @@
-import joystick, { set } from '@joystick.js/ui-canary';
+import joystick, { set } from '@joystick.js/ui';
 import toasts from '../../../lib/toasts.js';
 
 const NewProjectModal = joystick.component({

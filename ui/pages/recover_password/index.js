@@ -1,4 +1,4 @@
-import joystick, { accounts } from '@joystick.js/ui-canary';
+import joystick, { accounts } from '@joystick.js/ui';
 import toasts from '../../../lib/toasts.js';
 
 const RecoverPassword = joystick.component({
