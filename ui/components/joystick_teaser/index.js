@@ -16,7 +16,7 @@ const JoystickTeaser = joystick.component({
           .joystick-teaser > img {
             height: 25px;
             display: inline-block;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
           }
           
           .joystick-teaser > p {
