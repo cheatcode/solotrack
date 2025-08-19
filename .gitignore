@@ -2,3 +2,4 @@ node_modules
 .joystick/data
 .joystick/build
 uploads
+settings.production.json
