@@ -4,4 +4,4 @@ An example application built using the [Joystick](https://cheatcode.co/joystick?
 
 [View a Live Demo](https://solotrack.app)
 
-> The live demo app's data is deleted periodically and is not intended for regular use.
+> The live demo app has its data deleted periodically and is not intended for regular use.
