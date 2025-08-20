@@ -94,7 +94,7 @@ const Signup = joystick.component({
               last: event.target.last_name.value,
             },
           },
-        }).then(() => {
+        }).then((response) => {
           location.pathname = '/projects';
         }).catch(({ errors }) => {
           toasts.danger({
